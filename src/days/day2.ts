@@ -1,4 +1,5 @@
 import { Context } from '../context';
+import { Day } from '../types';
 
 type Policy = {
   first: string;
