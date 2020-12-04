@@ -62,5 +62,6 @@
       ]
     ],
     "coverageDirectory": "../reports"
-  }
+  },
+  "pre-push": []
 }
