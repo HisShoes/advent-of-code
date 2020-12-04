@@ -1,5 +1,5 @@
-import { Context } from './context';
-import { Day } from './types';
+import { Context } from '../context';
+import { Day } from '../types';
 
 export const day = (context: Context): Day => {
   const part1 = () => {};
