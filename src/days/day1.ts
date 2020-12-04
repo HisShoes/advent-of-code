@@ -1,6 +1,5 @@
 /* eslint-disable no-restricted-syntax */
-import { Context } from './context';
-import { Day } from './types';
+import { Context } from '../context';
 
 const findTarget = (data, target) => {
   const step = (start, end): number => {

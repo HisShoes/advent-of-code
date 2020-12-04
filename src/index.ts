@@ -1,7 +1,7 @@
 import { Context, createContext } from './context';
-import { day1 } from './day1';
-import { day2 } from './day2';
-import { day3 } from './day3';
+import { day1 } from './days/day1';
+import { day2 } from './days/day2';
+import { day3 } from './days/day3';
 
 const context: Context = createContext();
 

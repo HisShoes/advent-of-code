@@ -1,5 +1,4 @@
-import { Context } from './context';
-import { Day } from './types';
+import { Context } from '../context';
 
 enum SlopeMap {
   TREE = '#',
