@@ -8,7 +8,9 @@ enum SlopeMap {
 
 export const day3 = (context: Context): Day => {
   const data = context.getDayInput(3).map((a) => a.split(''));
+
   const capWidth = (n) => n % data[0].length;
+
   const countTreesForTrajectory = (down, right) => {
     let x = 0;
     let count = 0;
@@ -24,22 +26,17 @@ export const day3 = (context: Context): Day => {
   };
 
   const part1 = () => {
-    const count = countTreesForTrajectory(1, 3);
-    console.log(count);
-    return count;
+    return countTreesForTrajectory(1, 3);
   };
 
   const part2 = () => {
-    const counts = [
+    return [
       countTreesForTrajectory(1, 1),
       countTreesForTrajectory(1, 3),
       countTreesForTrajectory(1, 5),
       countTreesForTrajectory(1, 7),
       countTreesForTrajectory(2, 1),
-    ];
-    const result = counts.reduce((acc, cur) => acc * cur, 1);
-    console.log(result);
-    return counts;
+    ].reduce((acc, cur) => acc * cur, 1);
   };
 
   return { part1, part2 };

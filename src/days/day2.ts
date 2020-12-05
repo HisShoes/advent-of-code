@@ -52,23 +52,14 @@ const validPasswordsReducer = (validator) => (acc, curr) => {
 
 export const day2 = (context: Context): Day => {
   const part1 = () => {
-    const validCount = context
+    return context
       .getDayInput(2)
       .map(parsePolicyAndPassword)
       .reduce(validPasswordsReducer(sledRentalPasswordValidator), 0);
-
-    console.log(validCount);
-    return validCount;
   };
 
   const part2 = () => {
-    const validCount = context
-      .getDayInput(2)
-      .map(parsePolicyAndPassword)
-      .reduce(validPasswordsReducer(tobogganCorpValidator), 0);
-
-    console.log(validCount);
-    return validCount;
+    return context.getDayInput(2).map(parsePolicyAndPassword).reduce(validPasswordsReducer(tobogganCorpValidator), 0);
   };
 
   return { part1, part2 };

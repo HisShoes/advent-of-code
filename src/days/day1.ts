@@ -28,7 +28,6 @@ const findTripletTarget = (data, totalTarget) => {
     const filteredData = data.filter((_, idx) => idx !== i);
     const result = findTarget(filteredData, target);
     if (result > -1) {
-      console.log(data[i] * result);
       return data[i] * result;
     }
   }
@@ -42,9 +41,7 @@ export const day1 = (context: Context): Day => {
       .sort()
       .map((s) => parseInt(s, 10));
 
-    const result = findTarget(data, 2020);
-    console.log(result);
-    return result;
+    return findTarget(data, 2020);
   };
 
   const part2 = () => {
