@@ -63,8 +63,5 @@
     ],
     "coverageDirectory": "../reports"
   },
-  "pre-push": [
-    "lint",
-    "test"
-  ]
+  "pre-push": []
 }
