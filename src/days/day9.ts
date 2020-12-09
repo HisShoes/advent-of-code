@@ -31,8 +31,6 @@ export const day9 = (context: Context): Day => {
       }
       if (sumTotal > target) start += 1;
       if (sumTotal < target) end += 1;
-      // console.log(`${start} - ${end}`);
-      // console.log(curSlice);
     }
     return [];
   };
