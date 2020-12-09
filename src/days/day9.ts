@@ -25,10 +25,7 @@ export const day9 = (context: Context): Day => {
     while (start < numbers.length && end < numbers.length) {
       const curSlice = numbers.slice(start, end);
       const sumTotal = curSlice.reduce((c, a) => a + c, 0);
-      if (sumTotal === target) {
-        console.log(curSlice);
-        return curSlice;
-      }
+      if (sumTotal === target) return curSlice;
       if (sumTotal > target) start += 1;
       if (sumTotal < target) end += 1;
     }
