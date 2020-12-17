@@ -41,7 +41,7 @@ export const day12 = (context: Context): Day => {
 
   const part1 = () => {
     const finalShipPosition = directions.reduce(
-      ([x, y, dir], cur) => {
+      ([x, y, dir]: number[], cur) => {
         if (['E', 'S', 'W', 'N'].includes(cur.command))
           return [...movementModifiers[cur.command](x, y, cur.magnitude), dir];
         if (['L', 'R'].includes(cur.command))
@@ -60,7 +60,7 @@ export const day12 = (context: Context): Day => {
 
   const part2 = () => {
     const finalShipPosition = directions.reduce(
-      ([x, y, wx, wy], cur) => {
+      ([x, y, wx, wy]: number[], cur) => {
         if (['E', 'S', 'W', 'N'].includes(cur.command))
           return [x, y, ...movementModifiers[cur.command](wx, wy, cur.magnitude)];
         if (['L', 'R'].includes(cur.command))
