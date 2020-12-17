@@ -71,7 +71,7 @@ export const day11 = (context: Context): Day => {
       newCount = countFilledSeats(newSeats);
     }
 
-    return countFilledSeats(newSeats);
+    return newCount;
   };
 
   const part2 = () => {
@@ -84,7 +84,7 @@ export const day11 = (context: Context): Day => {
       newCount = countFilledSeats(newSeats);
     }
 
-    return countFilledSeats(newSeats);
+    return newCount;
   };
   return { part1, part2 };
 };
