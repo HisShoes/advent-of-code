@@ -64,7 +64,7 @@ const processToStability = (seats, processFunction) => {
   let newCount = countFilledSeats(newSeats);
   while (newCount !== lastCount) {
     lastCount = newCount;
-    newSeats = newSeats.map(processFunction(newSeats));
+    newSeats = newSeats.map((row, y) => row.map((seat, x) => processFunction(newSeats, seat, x, y)));
     newCount = countFilledSeats(newSeats);
   }
 
@@ -75,14 +75,10 @@ export const day11 = (context: Context): Day => {
   const seats = context.getDayInput(11).map((row) => row.split(''));
 
   const part1 = () =>
-    processToStability(seats, (newSeats) => (row, y) =>
-      row.map((seat, x) => processTile(getAdjacentTiles(newSeats, x, y), seat)),
-    );
+    processToStability(seats, (newSeats, seat, x, y) => processTile(getAdjacentTiles(newSeats, x, y), seat));
 
   const part2 = () =>
-    processToStability(seats, (newSeats) => (row, y) =>
-      row.map((seat, x) => processTile(getAdjacentSeats(newSeats, x, y), seat, 5)),
-    );
+    processToStability(seats, (newSeats, seat, x, y) => processTile(getAdjacentSeats(newSeats, x, y), seat, 5));
 
   return { part1, part2 };
 };
