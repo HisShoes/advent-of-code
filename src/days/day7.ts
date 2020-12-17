@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-continue */
 import { Context } from '../context';
 import { Day } from '../types';
 
@@ -21,7 +24,7 @@ const parseRulesBottomUp = (rules) => {
     contains.split(',').forEach((colorRuleString) => {
       const [_, quantity, color] = /(\d+) ([a-z]+ [a-z]+)/g.exec(colorRuleString) ?? [];
       if (color) {
-        const colorRule: ColorRule = { quantity: parseInt(quantity), color: containerColor };
+        const colorRule: ColorRule = { quantity: parseInt(quantity, 10), color: containerColor };
         map[color] = map[color] ? [...map[color], colorRule] : [colorRule];
       }
     });
@@ -51,7 +54,7 @@ const parseRulesTopDown = (rules) => {
     contains.split(',').forEach((colorRuleString) => {
       const [_, quantity, color] = /(\d+) ([a-z]+ [a-z]+)/g.exec(colorRuleString) ?? [];
       if (color) {
-        const colorRule: ColorRule = { quantity: parseInt(quantity), color };
+        const colorRule: ColorRule = { quantity: parseInt(quantity, 10), color };
         map[containerColor] = map[containerColor] ? [...map[containerColor], colorRule] : [colorRule];
       }
     });
@@ -62,7 +65,7 @@ const parseRulesTopDown = (rules) => {
 
 const countContainedBags = (searchColor, containmentMap: ContainmentMap) => {
   let count = 0;
-  let possibleColors = [searchColor];
+  const possibleColors = [searchColor];
   while (possibleColors.length > 0) {
     const currentColor = possibleColors.pop();
     if (!containmentMap[currentColor]) continue;
