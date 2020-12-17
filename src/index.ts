@@ -1,5 +1,5 @@
 import { Context, createContext } from './context';
-import { day12 } from './days/day12';
+import { day11 } from './days/day11';
 // import { day1 } from './days/day1';
 // import { day10 } from './days/day10';
 // import { day2 } from './days/day2';
@@ -13,7 +13,7 @@ import { day12 } from './days/day12';
 
 const context: Context = createContext();
 
-const days = [day12];
+const days = [day11];
 
 days.forEach((day) => {
   const d = day(context);

@@ -58,33 +58,31 @@ const countFilledSeats = (seats) =>
     .split(',')
     .filter((s) => s === TileState.PERSON).length;
 
+const processToStability = (seats, processFunction) => {
+  let newSeats = [...seats];
+  let lastCount = -1;
+  let newCount = countFilledSeats(newSeats);
+  while (newCount !== lastCount) {
+    lastCount = newCount;
+    newSeats = newSeats.map(processFunction(newSeats));
+    newCount = countFilledSeats(newSeats);
+  }
+
+  return newCount;
+};
+
 export const day11 = (context: Context): Day => {
   const seats = context.getDayInput(11).map((row) => row.split(''));
 
-  const part1 = () => {
-    let newSeats = [...seats];
-    let lastCount = -1;
-    let newCount = countFilledSeats(newSeats);
-    while (newCount !== lastCount) {
-      lastCount = newCount;
-      newSeats = newSeats.map((row, y) => row.map((seat, x) => processTile(getAdjacentTiles(newSeats, x, y), seat)));
-      newCount = countFilledSeats(newSeats);
-    }
+  const part1 = () =>
+    processToStability(seats, (newSeats) => (row, y) =>
+      row.map((seat, x) => processTile(getAdjacentTiles(newSeats, x, y), seat)),
+    );
 
-    return newCount;
-  };
+  const part2 = () =>
+    processToStability(seats, (newSeats) => (row, y) =>
+      row.map((seat, x) => processTile(getAdjacentSeats(newSeats, x, y), seat, 5)),
+    );
 
-  const part2 = () => {
-    let newSeats = [...seats];
-    let lastCount = -1;
-    let newCount = countFilledSeats(newSeats);
-    while (newCount !== lastCount) {
-      lastCount = newCount;
-      newSeats = newSeats.map((row, y) => row.map((seat, x) => processTile(getAdjacentSeats(newSeats, x, y), seat, 5)));
-      newCount = countFilledSeats(newSeats);
-    }
-
-    return newCount;
-  };
   return { part1, part2 };
 };
