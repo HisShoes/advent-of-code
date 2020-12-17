@@ -2,46 +2,26 @@
 import { Context } from '../context';
 import { Day } from '../types';
 
-const findTarget = (data, target) => {
-  const step = (start, end): number => {
-    if (data[start] + data[end] === target) {
-      return data[start] * data[end];
+export const day1 = (context: Context): Day => {
+  const findTripletTarget = (data, totalTarget) => {
+    for (let i = 0; i < data.length; i += 1) {
+      const target = totalTarget - data[i];
+      const filteredData = data.filter((_, idx) => idx !== i);
+      const result = context.findSumToTarget(filteredData, target);
+      if (result.length > 0) {
+        return data[i] * result.reduce((c, a) => c * a, 1);
+      }
     }
-
-    if (start > end) {
-      return -1;
-    }
-
-    if (data[start] + data[end] > target) {
-      return step(start, end - 1);
-    }
-
-    return step(start + 1, end);
+    return -1;
   };
 
-  return step(0, data.length - 1);
-};
-
-const findTripletTarget = (data, totalTarget) => {
-  for (let i = 0; i < data.length; i += 1) {
-    const target = totalTarget - data[i];
-    const filteredData = data.filter((_, idx) => idx !== i);
-    const result = findTarget(filteredData, target);
-    if (result > -1) {
-      return data[i] * result;
-    }
-  }
-  return -1;
-};
-
-export const day1 = (context: Context): Day => {
   const part1 = () => {
     const data = context
       .getDayInput(1)
       .sort()
       .map((s) => parseInt(s, 10));
 
-    return findTarget(data, 2020);
+    return context.findSumToTarget(data, 2020).reduce((c, a) => c * a, 1);
   };
 
   const part2 = () => {
